@@ -1,20 +1,19 @@
+// Jenkinsfile in GitHub repo
 pipeline {
     agent any
 
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Faiza467/my-lamp-app.git'
+                git 'https://github.com/yourusername/my-lamp-app.git'
             }
         }
 
         stage('Build and Deploy Containers') {
             steps {
                 script {
-                    // Stop any running containers to avoid conflicts
-                    sh 'docker compose -f docker-compose-part2.yml down'
-                    // Build and start the containers
-                    sh 'docker compose -f docker-compose-part2.yml up -d --build'
+                    sh 'docker compose -p travel_blog_ci2 -f docker-compose-part2.yml down || true'
+                    sh 'docker compose -p travel_blog_ci2 -f docker-compose-part2.yml up -d --build'
                 }
             }
         }
