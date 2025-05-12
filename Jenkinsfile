@@ -13,7 +13,7 @@ pipeline {
             steps { 
                 script {
                     sh 'docker-compose -p travel_blog_ci2 -f docker-compose-part2.yml down || true'
-                    sh 'docker-compose -p travel_blog_ci2 -f docker-compose-part2.yml up -d --build'
+                    sh 'docker-compose -p travel_blog_ci2 -f docker-compose-part2.yml up -d --build --no-cache'
 
                 }
             }
