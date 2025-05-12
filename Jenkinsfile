@@ -1,11 +1,10 @@
-// Jenkinsfile in GitHub repo
 pipeline {
     agent any
 
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/yourusername/my-lamp-app.git'
+                git 'https://github.com/Faiza467/my-lamp-app.git'
             }
         }
 
