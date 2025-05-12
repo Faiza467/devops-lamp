@@ -1,31 +1,23 @@
-version: '3.8'
-
 services:
   web:
     build: .
-    container_name: travel_blog_ci_web
+    container_name: travel_blog_ci2_web
     ports:
-      - "5001:80"  
+      - "5060:80"  
+    volumes:
+      - ./app:/var/www/html
     depends_on:
       - db
-    volumes:
-      - ./app:/var/www/html  
+
   db:
     image: mysql:5.7
-    container_name: travel_blog_ci_db
+    container_name: travel_blog_ci2_db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
     volumes:
-      - db_data_ci:/var/lib/mysql
+      - db_data_ci2:/var/lib/mysql
       - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 
-  adminer:
-    image: adminer
-    container_name: travel_blog_ci_adminer
-    restart: always
-    ports:
-      - "8081:8080"  # Avoid conflict
-
 volumes:
-  db_data_ci:
+  db_data_ci2:
