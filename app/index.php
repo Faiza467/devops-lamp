@@ -17,7 +17,7 @@ $posts = $conn->query("SELECT * FROM posts ORDER BY created_at DESC");
     <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-container">
-            <h1>🌍 My Traveling Blog Part2</h1>
+            <h1>🌍 My Traveling Blog Fida</h1>
             <a href="add_post.php" class="btn">+ Add New Post</a>
         </div>
     </nav>
