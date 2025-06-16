@@ -1,5 +1,15 @@
 <?php
+
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
+
 include 'db.php';
+
+
 
 // Fetch all blog posts
 $posts = $conn->query("SELECT * FROM posts ORDER BY created_at DESC");
@@ -15,12 +25,14 @@ $posts = $conn->query("SELECT * FROM posts ORDER BY created_at DESC");
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-container">
-            <h1>🌍 My Traveling Blog</h1>
-            <a href="add_post.php" class="btn">+ Add New Post</a>
-        </div>
-    </nav>
+<nav class="navbar">
+    <div class="navbar-container">
+        <h1>🌍 My Traveling Blog</h1>
+        <a href="add_post.php" class="btn">+ Add New Post</a>
+        <a href="logout.php" class="btn">Logout</a>
+    </div>
+</nav>
+
 
     <!-- Main Content -->
     <div class="container">
