@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <nav class="navbar">
     <div class="navbar-container">
-        <h1>✈️ Add Travel Blogs Post</h1>
+        <h1>✈️ Add Travel Blogs Posts</h1>
         <a href="index.php" class="btn">← Back to Blog</a>
     </div>
 </nav>
