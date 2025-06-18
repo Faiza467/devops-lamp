@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repository') {
+        stage('Clone Application Repo') {
             steps {
                 git branch: 'main', url: 'https://github.com/Faiza467/devops-lamp.git'
             }
@@ -14,6 +14,14 @@ pipeline {
                     sh 'docker-compose -p travel_blog_ci2 -f docker-compose-part2.yml down || true'
                     sh 'docker-compose -p travel_blog_ci2 -f docker-compose-part2.yml build --no-cache'
                     sh 'docker-compose -p travel_blog_ci2 -f docker-compose-part2.yml up -d --remove-orphans'
+                }
+            }
+        }
+
+        stage('Clone Test Cases Repo') {
+            steps {
+                script {
+                    sh 'git clone https://github.com/Faiza467/travelblog-tests.git'
                 }
             }
         }
