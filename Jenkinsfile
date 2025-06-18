@@ -15,7 +15,7 @@ pipeline {
 
         stage('Clone Application Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/Faiza467/travelblog.git'
+                git branch: 'main', url: 'https://github.com/Faiza467/devops-lamp.git'
             }
         }
 
