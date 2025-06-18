@@ -21,7 +21,7 @@ pipeline {
         stage('Clone Test Cases Repo') {
             steps {
                 script {
-                    sh 'rm -rf travelblog-tests' 
+                    sh 'sudo rm -rf travelblog-tests' 
                     sh 'git clone https://github.com/Faiza467/travelblog-tests.git'
                 }
             }
