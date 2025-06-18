@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Main Repo') {
+        stage('Clone Repository') {
             steps {
                 git branch: 'main', url: 'https://github.com/Faiza467/devops-lamp.git'
             }
@@ -18,30 +18,16 @@ pipeline {
             }
         }
 
-        stage('Clone Test Repo') {
-            steps {
-                sh 'git clone https://github.com/Faiza467/travelblog-tests.git'
-            }
-        }
-
-        stage('Run Selenium Tests (Headless Chrome)') {
-            agent {
-                docker {
-                    image 'markhobson/maven-chrome'
-                    args '-v /dev/shm:/dev/shm'
-                }
-            }
-            steps {
-                dir('travelblog-tests') {
-                    sh 'mvn clean test'
-                }
-            }
-        }
-
-        stage('Teardown Containers') {
+        stage('Run Test Cases') {
             steps {
                 script {
-                    sh 'docker-compose -p travel_blog_ci2 -f docker-compose-part2.yml down'
+                    sh '''
+                    docker run --rm \
+                        -v "$PWD":/tests \
+                        -w /tests \
+                        markhobson/maven-chrome \
+                        mvn -f travelblog-tests/pom.xml test
+                    '''
                 }
             }
         }
